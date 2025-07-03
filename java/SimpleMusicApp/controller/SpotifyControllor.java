@@ -19,9 +19,9 @@ public class SpotifyControllor {
 
     @GetMapping("/getApi")
     public String getApi(){
-        String apitoken = spotifyApiService.getSpotifyToken();
-        System.out.println(apitoken);
-        return apitoken;
+        String apiToken = spotifyApiService.getSpotifyToken();
+        System.out.println(apiToken);
+        return apiToken;
     }
 
 }

@@ -12,12 +12,5 @@ public class MusicService {
     @Autowired
     SpotifyApiService spotifyApiService;
 
-    public Music findMusic(String musicName, String apiKey) {
 
-        Music key = spotifyApiService.searchMusic(apiKey, musicName);
-
-        System.out.println(key.getMusicName());
-
-        return key;
-    }
 }

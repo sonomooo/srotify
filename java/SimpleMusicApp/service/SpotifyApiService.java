@@ -1,5 +1,7 @@
 package SimpleMusicApp.service;
 
+import SimpleMusicApp.DTO.SpotifySearchResponse;
+import SimpleMusicApp.DTO.SpotifyTokenResponse;
 import SimpleMusicApp.domain.Music;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -25,9 +27,9 @@ public class SpotifyApiService {
     }
 
     public String getSpotifyToken(){
-        System.out.println("호출완료");
+        System.out.println("토큰 호출완료");
 
-        return webClient
+        SpotifyTokenResponse response = webClient
                 .post()
                 .uri("/api/token")
                 .header("Content-Type","application/x-www-form-urlencoded")
@@ -37,19 +39,26 @@ public class SpotifyApiService {
                         .with("client_id",clientId)
                 )
                 .retrieve()
-                .bodyToMono(String.class)
+                .bodyToMono(SpotifyTokenResponse.class)
                 .block();
+
+        return response.getAccess_token();
+
     }
 
-    public Music searchMusic(String oneHourToken, String musicName) {
+    public SpotifySearchResponse searchMusic(String oneHourToken, String musicName) {
 
         return webClient.get()
-                .uri("https://api.spotify.com/v1/albums/"+musicName)
-                .header("Authorization:","Bearer Token " +oneHourToken)
+                .uri(uriBuilder -> uriBuilder
+                        .scheme("https")
+                        .host("api.spotify.com")
+                        .path("/v1/search")
+                        .queryParam("q", musicName)
+                        .queryParam("type", "track")
+                        .build())
+                .header("Authorization", "Bearer " + oneHourToken)
                 .retrieve()
-                .bodyToMono(Music.class)
+                .bodyToMono(SpotifySearchResponse.class)
                 .block();
     }
-
-
 }
