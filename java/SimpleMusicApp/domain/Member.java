@@ -25,7 +25,7 @@ public class Member {
     @Column
     private String name;
 
-    private List<MusicSampleInfo> playlists = new ArrayList<>();
+    //private List<MusicSampleInfo> playlists = new ArrayList<>();
 
 
 }

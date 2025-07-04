@@ -1,6 +1,12 @@
 package SimpleMusicApp.DTO;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+
 public class MusicSampleInfo {
+
     private String title;
     private String artist;
     private String album;

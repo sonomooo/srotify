@@ -21,7 +21,7 @@ public class PlayList {
     private Member member;
 
     //음악 리스트
-    @ManyToMany
-    private List<MusicSampleInfo> musics = new ArrayList<>();
+//    @ManyToMany
+//    private List<MusicSampleInfo> musics = new ArrayList<>();
 
 }

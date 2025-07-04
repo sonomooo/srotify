@@ -2,6 +2,7 @@ package SimpleMusicApp.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,11 +11,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Music {
+    @Id @GeneratedValue
+    private Long id;
 
-    @Id
-    Long id;
-
-    @Column
-    String musicName;
-
+    private String title;
+    private String artist;
+    private String album;
+    private String albumImageUrl;
+    private String previewUrl;
 }
